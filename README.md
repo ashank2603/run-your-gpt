@@ -2,36 +2,34 @@
 
 Welcome to the hiring task for gstudio.ai! In this task, your objective is to create a frontend application that allows users to chat with a custom AI model. You will be provided with the necessary resources to set up the environment and interact with the AI model.
 
-## Objective
 
-Your task is to create a frontend application using React that enables users to have interactive conversations with a custom AI model. You will use the provided Google Colab notebook for running the AI model and the example Python file for interacting with it.
+## How to run
+- Clone or download this repository.
+- Open the repository in a terminal.
 
-## Provided Resources
+#### Backend (AI Model):
+- Create a virtual environment using [virtualenv](https://virtualenv.pypa.io/en/latest/user_guide.html) or any other library of your choice. If using virtualenv, run `virtualenv venv` in the terminal to create the virtual environment.
+- Activate the virtual environment created. For virtualenv, run `venv\scripts\activate` in the terminal to activate the environment.
+- Run `pip install -r requirements.txt` to install all the dependencies.
+- Now, run the cells of this [colab](https://colab.research.google.com/drive/1BkL7zYVYtn0JPYKMPJ0tJmK-zMtINx0P?usp=sharing) notebook. Once all the cells are executed, copy the ssl link which will look similar to this: `wss://your-uri-here.trycloudflare.com/api/v1/stream`
+- Create a dotenv file and paste the following in it:
+    ```
+    MODEL_HOST_STRING = '<YOUR_MODEL_HOST_STRING>'
+    ```
+- Run `uvicorn main:app` to run the backend server. The server will be accessible [here](http://127.0.0.1:8000/).
 
-1. **Google Colab Notebook**: This [notebook](https://colab.research.google.com/drive/1BkL7zYVYtn0JPYKMPJ0tJmK-zMtINx0P?usp=sharing) contains the AI model and establishes a WebSocket connection along with a normal server for interaction.
-
-2. **Example Python File**: Both Files demonstrates how to interact with the AI model programmatically, you can use any one of the two streaming methods to complete the task. But be ready with a reason of why you selected it.
-
-## Tasks
-
-1. **Create a React Frontend**: Develop a user-friendly chat interface using React where users can input their messages and receive responses from the AI model.
-
-2. **Integrate AI Model**: Use the provided example Python file to communicate with the AI model. Messages from the frontend should be sent to the AI model, and the responses should be displayed back to the user in the chat interface.
-
-3. **Implement Message Limit and Login System**: Limit the number of messages a user can send to 25. Optionally, you can implement a simple login system to track users' messages.
-
-4. **Bonus Points - Incorporate Whisper STT and Silero TTS**: If you want to earn brownie points, consider integrating the Whisper Speech-to-Text (STT) system for voice input and Silero Text-to-Speech (TTS) for generating AI model responses as voice output.
-
-## Submission
-
-Fork this repository and create your solution within it. Once you're done, please provide us with a link to your forked repository for evaluation.
-
-## Evaluation Criteria
-
-- Functionality: Does the frontend allow users to chat with the AI model effectively?
-- Code Quality: Is the code well-structured, clean, and maintainable?
-- Additional Features: Did you successfully implement the message limit, login system, and any bonus tasks?
-- Creativity: Did you go beyond the basic requirements to make the chat interface more engaging and user-friendly?
-- Documentation: Is your `README.md` clear and comprehensive?
-
-Feel free to reach out if you have any questions. Good luck!
+#### Frontend:
+- Open the repository in another terminal and cd into the frontend directory.
+- Run `npm install` in the terminal to install all the dependencies.
+- Open firebase [console](https://firebase.google.com/) and create a new project. Register a web app to get your firebase credentials.
+- Create a dotenv file and paste the following content in it. Make sure to replace the values with your own firebase values.
+    ```
+    VITE_FIREBASE_API_KEY = "<YOUR_VITE_FIREBASE_API_KEY>"
+    VITE_FIREBASE_AUTH_DOMAIN = "<YOUR_VITE_FIREBASE_AUTH_DOMAIN>"
+    VITE_FIREBASE_PROJECT_ID = "<YOUR_VITE_FIREBASE_PROJECT_ID>"
+    VITE_FIREBASE_STORAGE_BUCKET = "<YOUR_VITE_FIREBASE_STORAGE_BUCKET>"
+    VITE_FIREBASE_MESSAGING_SENDER_ID = "<YOUR_VITE_FIREBASE_MESSAGING_SENDER_ID>"
+    VITE_FIREBASE_APP_ID = "<YOUR_VITE_FIREBASE_APP_ID>"
+    ```
+- Run `npm run dev` to start the application.
+- The frontend can be accessed at [localhost:5173](http://localhost:5173/).
